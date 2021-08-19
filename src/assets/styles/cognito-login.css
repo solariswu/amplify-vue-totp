@@ -4,12 +4,6 @@ body {
   background: #fff1e2;
 }
 
-@media (min-width: 768px) {
-  .modal-dialog {
-    width: 700px;
-  }
-}
-
 header.app-header {
   align-items: center;
   background: #fff1e2;
