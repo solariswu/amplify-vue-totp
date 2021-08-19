@@ -1,12 +1,10 @@
 <template>
   <div class="container">
     <div class="modal-dialog">
-      <div
-        class="modal-content background-customizable modal-content-mobile visible-xs visible-sm"
-      >
+      <div class="modal-content background-customizable modeal-content-mobile">
         <div class="modal-body">
-          <QrcodeVue v-bind:value="qrstr" v-if="qrstr !== null" />
           <div v-if="needInput !== null">
+            <QrcodeVue v-bind:value="qrstr" v-if="qrstr !== null" />
             <form id="inputCode" @submit.prevent="inputdone">
               <input
                 id="inputCode"
@@ -18,95 +16,75 @@
                 required
                 v-model="inputText"
               />
-              <button
-                v-if="loading"
+              <p />
+              <a-button
+                :loading="loading"
                 variant="success"
-                type="submit"
+                type="primary"
+                htmlType="submit"
                 form="inputCode"
                 value="Submit"
-                block
-              >
-                <span
-                  class="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span
-                >Ok
-              </button>
-              <button
-                v-else
-                variant="success"
-                type="submit"
-                form="inputCode"
-                value="Submit"
-                block
               >
                 Ok
-              </button>
+              </a-button>
             </form>
           </div>
-          <div v-if="needInput === null && user !== null">
-            User: {{ user.signInUserSession? user.signInUserSession.idToken.payload.email : ''}}
+          <div v-else-if="needInput === 'done' && user !== null">
+            User:
+            {{
+              user.signInUserSession
+                ? user.signInUserSession.idToken.payload.email
+                : ""
+            }}
           </div>
-          <div v-if="needInput === null && user === null">
-            <h2>Login</h2>
-            <br />
+          <div v-else-if="needInput === null && user === null">
             <div>
-              <form id="signInForm" @submit.prevent="login">
-                <div>
-                  <input
-                    id="signInFormUsername"
-                    name="username"
-                    type="text"
-                    class="form-control inputField-customizable"
-                    placeholder="Username"
-                    autocapitalize="none"
-                    required
-                    v-model="username"
-                    :disabled="loading"
-                  />
-                </div>
-                <p />
-                <div>
-                  <input
-                    id="signInFormPassword"
-                    name="password"
-                    type="password"
-                    class="form-control inputField-customizable"
-                    placeholder="Password"
-                    required
-                    v-model="password"
-                    :disabled="loading"
-                  />
-                </div>
-                <button
-                  v-if="loading"
-                  variant="success"
-                  type="submit"
-                  form="signInForm"
-                  value="Submit"
-                  block
-                >
-                  <span
-                    class="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span
-                  >Sign In
-                </button>
-                <button
-                  v-else
-                  variant="success"
-                  type="submit"
-                  form="signInForm"
-                  value="Submit"
-                  block
-                >
-                  Sign In
-                </button>
-              </form>
+              <h2>Login</h2>
+              <br />
+              <div>
+                <form id="signInForm" @submit.prevent="login">
+                  <div>
+                    <input
+                      id="signInFormUsername"
+                      name="username"
+                      type="text"
+                      class="form-control inputField-customizable"
+                      placeholder="Username"
+                      autocapitalize="none"
+                      required
+                      v-model="username"
+                      :disabled="loading"
+                    />
+                  </div>
+                  <p />
+                  <div>
+                    <input
+                      id="signInFormPassword"
+                      name="password"
+                      type="password"
+                      class="form-control inputField-customizable"
+                      placeholder="Password"
+                      required
+                      v-model="password"
+                      :disabled="loading"
+                    />
+                  </div>
+                  <p />
+                  <a-button
+                    variant="success"
+                    type="primary"
+                    form="signInForm"
+                    value="Submit"
+                    htmlType="submit"
+                    :loading="loading"
+                  >
+                    Sign In
+                  </a-button>
+                </form>
+              </div>
             </div>
           </div>
+          <div v-else class="simple-spinner"> </div>
         </div>
       </div>
     </div>
@@ -116,7 +94,6 @@
 import { Auth } from "@aws-amplify/auth";
 import { Hub } from "@aws-amplify/core";
 import QrcodeVue from "qrcode.vue";
-
 export default {
   components: { QrcodeVue },
   name: "HelloWorld",
@@ -161,7 +138,6 @@ export default {
     toast(msg) {
       alert(msg);
     },
-
     async inputdone() {
       this.loading = true;
       switch (this.needInput) {
@@ -173,7 +149,7 @@ export default {
           ).then((loggedUser) => {
             this.user = loggedUser;
             this.inputText = null;
-            this.needInput = null;
+            this.needInput = 'done';
           });
           break;
         case "NewPwd":
@@ -181,8 +157,8 @@ export default {
             (loggedUser) => {
               this.user = loggedUser;
               this.inputText = null;
-              this.needInput = null;
-              this.needTOTPSetup (this.user);
+              this.needInput = 'done';
+              this.needTOTPSetup(this.user);
             }
           );
           break;
@@ -196,7 +172,7 @@ export default {
               Auth.setPreferredMFA(this.user, "TOTP");
               this.loading = false;
               this.inputText = null;
-              this.needInput = null;
+              this.needInput = 'done';
               this.qrstr = null;
             })
             .catch((e) => {
@@ -263,3 +239,17 @@ export default {
   },
 };
 </script>
+<style scoped>
+.simple-spinner {
+  height: 48px;
+  width: 48px;
+  border: 5px solid rgba(150, 150, 150, 0.2);
+  border-radius: 50%;
+  border-top-color: rgb(150, 150, 150);
+  animation: rotate 1s 0s infinite ease-in-out alternate;
+}
+@keyframes rotate {
+  0%   { transform: rotate(0);      }
+  100% { transform: rotate(360deg); }
+}
+</style>
