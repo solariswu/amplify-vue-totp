@@ -1,10 +1,11 @@
 <template>
   <div class="container">
+    <center>
     <div class="modal-dialog">
       <div class="modal-content background-customizable modeal-content-mobile">
         <div class="modal-body">
           <div v-if="needInput !== null">
-            <QrcodeVue v-bind:value="qrstr" v-if="qrstr !== null" />
+            <center><QrcodeVue v-bind:value="qrstr" v-if="qrstr !== null" /></center>
             <form id="inputCode" @submit.prevent="inputdone">
               <input
                 id="inputCode"
@@ -17,6 +18,7 @@
                 v-model="inputText"
               />
               <p />
+              <center>
               <a-button
                 :loading="loading"
                 variant="success"
@@ -27,10 +29,11 @@
               >
                 Ok
               </a-button>
+              </center>
             </form>
           </div>
           <div v-else-if="needInput === 'done' && user !== null">
-            User:
+            UserInfo:
             {{
               user.signInUserSession
                 ? user.signInUserSession.idToken.payload.email
@@ -70,6 +73,7 @@
                     />
                   </div>
                   <p />
+                  <center>
                   <a-button
                     variant="success"
                     type="primary"
@@ -80,14 +84,16 @@
                   >
                     Sign In
                   </a-button>
+                  </center>
                 </form>
               </div>
             </div>
           </div>
-          <div v-else class="simple-spinner"> </div>
+          <center v-else class="simple-spinner" > </center>
         </div>
       </div>
     </div>
+    </center>
   </div>
 </template>
 <script>
