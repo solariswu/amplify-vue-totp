@@ -1,7 +1,8 @@
 body {
   font-family: "Arial";
   color: #3b3b3b;
-  background: #fff1e2;
+  background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
+  margin: 0 auto;
 }
 
 @media (min-width: 468px) {
@@ -10,9 +11,43 @@ body {
   }
 }
 
+body.center {
+  display: block;
+  text-align: -webkit-center;
+}
+
+input.divshake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 header.app-header {
   align-items: center;
-  background: #fff1e2;
+  /* background: #ddd6f3; */
+  background-image: linear-gradient(to right, #fccb90 0%, #d57eeb 100%);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   height: 45px;
@@ -54,8 +89,10 @@ header.app-header {
   border: 0px;
   overflow: hidden;
   border-radius: 0%;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 15px rgba(#000, 0.2);
+  border-radius: 0.3rem;
+  /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px 1px 0 rgba(0, 0, 0, 0.12); */
 }
 
 .modal-content-mobile {
@@ -256,7 +293,9 @@ header.app-header {
 }
 
 .background-customizable {
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 @media (max-width: 992px) {
@@ -331,4 +370,22 @@ header.app-header {
 .socialButton-customizable.apple-button .social-logo {
   margin-top: -3px;
   padding: 8px;
+}
+
+/* css loading icon */
+.simple-spinner {
+  height: 48px;
+  width: 48px;
+  border: 5px solid rgba(150, 150, 150, 0.2);
+  border-radius: 50%;
+  border-top-color: rgb(150, 150, 150);
+  animation: rotate 1s 0s infinite ease-in-out alternate;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

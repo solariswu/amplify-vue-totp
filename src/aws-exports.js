@@ -4,7 +4,10 @@
 const awsmobile = {
   aws_project_region: "us-east-1",
   aws_user_pools_id: "us-east-1_FC8kBApuy",
-  aws_user_pools_web_client_id: "235qakl0if7b3vss5ikehppnmi"
+  aws_user_pools_web_client_id: "235qakl0if7b3vss5ikehppnmi",
+  aws_appsync_graphqlEndpoint: "https://6qlfjimw5vgr7jgswys2zznswe.appsync-api.us-east-1.amazonaws.com/graphql",
+  aws_appsync_authenticationType: "API_KEY",
+  aws_appsync_apiKey: "da2-wlarhwfskjh55jjn3hylgblj7a"
 };
 
 export default awsmobile;

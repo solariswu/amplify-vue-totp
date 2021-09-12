@@ -10,6 +10,7 @@
   "dependencies": {
     "@aws-amplify/auth": "4.2.1",
     "ant-design-vue": "2.1.6",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "qrcode.vue": "3.2.2",
     "vue": "^3.0.0-0",

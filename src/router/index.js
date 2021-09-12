@@ -1,23 +1,38 @@
 //import VueRouter from "vue-router";
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
-// import UserInfo from "../components/UserInfo.vue";
-// import Landing from "../views/Landing.vue";
-// import ForgotPassword from "../views/ForgotPassword.vue";
-// import ResetPassword from "../views/ResetPassword.vue";
+import Login from "../views/Login.vue";
+import ChangePassword from "../views/Changepassword.vue";
+import TOTPSetup from "../views/Totpsetup.vue";
+import MFAInput from "../views/Mfainput.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login 
+  },
+  {
+    path: "/changepassword",
+    name: "ChangePassword",
+    component: ChangePassword,
+    props: true,
+  },
+  {
+    path: "/mfainput",
+    name: "MFAInput",
+    component: MFAInput 
+  },
+  {
+    path: "/totpsetup",
+    name: "TOTPSetup",
+    component: TOTPSetup 
   }
-  // {
-  //   path: "/hogwarts",
-  //   name: "Hogwarts",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/Hogwarts.vue")
-  // },
   // {
   //   path: "/register",
   //   name: "Register",
