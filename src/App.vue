@@ -6,11 +6,7 @@
           class="modal-content background-customizable modeal-content-mobile"
         > -->
           <!-- <div class="modal-body"> -->
-            <router-view v-slot="{ Component }">
-              <transition name="fade">
-                <component :is="Component" />
-              </transition>
-            </router-view>
+            <router-view />
           <!-- </div> -->
         <!-- </div> -->
       </div>
