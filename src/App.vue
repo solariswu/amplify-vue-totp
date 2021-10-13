@@ -2,13 +2,7 @@
   <div id="app">
     <div class="container center">
       <div class="modal-dialog">
-        <!-- <div
-          class="modal-content background-customizable modeal-content-mobile"
-        > -->
-          <!-- <div class="modal-body"> -->
-            <router-view />
-          <!-- </div> -->
-        <!-- </div> -->
+        <router-view />
       </div>
     </div>
   </div>
@@ -16,8 +10,7 @@
 
 <script>
 import { Auth } from "@aws-amplify/auth";
-import { message } from 'ant-design-vue';
-
+import { message } from "ant-design-vue";
 
 export default {
   name: "App",

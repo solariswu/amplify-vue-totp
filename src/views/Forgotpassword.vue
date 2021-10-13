@@ -1,31 +1,35 @@
 <template>
-<h2>Forgot Password</h2>
-<br />
-    <span>Please enter your new password below.</span>
-  <form id="inputCode" @submit.prevent="inputdone">
-    <input
-      id="inputCode"
-      name="inputText"
-      type="text"
-      class="form-control inputField-customizable"
-      v-bind:placeholder="needInput"
-      autocapitalize="none"
-      required
-      v-model="inputText"
-    />
-    <p />
-    <a-button
-      :loading="loading"
-      variant="success"
-      type="primary"
-      htmlType="submit"
-      form="inputCode"
-      value="Submit"
-      block
-    >
-      Ok
-    </a-button>
-  </form>
+  <div class="modal-content background-customizable modeal-content-mobile">
+    <div class="modal-body">
+      <h2>Forgot Password</h2>
+      <br />
+      <span>Please enter your email address below.</span>
+      <form id="inputCode" @submit.prevent="inputdone">
+        <input
+          id="inputEmail"
+          name="inputText"
+          type="text"
+          class="form-control inputField-customizable"
+          v-bind:placeholder="needInput"
+          autocapitalize="none"
+          required
+          v-model="inputText"
+        />
+        <p />
+        <a-button
+          :loading="loading"
+          variant="success"
+          type="primary"
+          htmlType="submit"
+          form="inputCode"
+          value="Submit"
+          block
+        >
+          Ok
+        </a-button>
+      </form>
+    </div>
+  </div>
 </template>
 <script>
 import { Auth } from "@aws-amplify/auth";

@@ -73,11 +73,13 @@ export default {
     async login() {
       this.loading = true;
       this.needShake = false;
-      Auth.signIn(this.username, this.password)
+      const metaData = { IP: "1.1.1.1" }; // test only
+      Auth.signIn(this.username, this.password, metaData)
         .then((userData) => {
           this.user = userData;
           this.loading = false;
-          console.log("challenge_name:", userData.challengeName);
+          console.log ('userdata', userData);
+          // console.log("challenge_name:", userData.challengeName);
           switch (userData.challengeName) {
             case "NEW_PASSWORD_REQUIRED":
               console.log("userData:", userData);
@@ -91,7 +93,12 @@ export default {
               break;
             case "SOFTWARE_TOKEN_MFA":
             case "SMS_MFA":
-              this.$router.push("/mfainput/");
+              this.$router.push({
+                name: "MFAInput",
+                params: {
+                  user: JSON.stringify(userData),
+                },
+              });
               break;
             case "MFA_SETUP":
             default:
@@ -101,8 +108,17 @@ export default {
         })
         .catch((err) => {
           console.log(err.message);
-          message.warning(err.message);
-          (this.needShake = true), (this.loading = false);
+          message.warning(err.message).then(() => {
+            this.loading = false;
+            switch (err.code) {
+              case 'UserNotConfirmedException':
+                this.$router.push("/confirmsignup/");
+                break;
+              default:
+                break;
+            }
+          });
+          this.needShake = true;
         });
     },
   },
