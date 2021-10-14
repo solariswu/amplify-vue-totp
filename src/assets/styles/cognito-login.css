@@ -414,7 +414,7 @@ header.app-header {
 	border-radius: 20px 20px 0 0;
 	padding-bottom: 150px;
 	width: 400px;
-	background: #4f759b;
+	background: #a7bfe8;
 }
 
 .profile-pic img {
@@ -427,34 +427,5 @@ header.app-header {
 
 .title {
 	margin-bottom: 25px;
-}
-
-.images-container {
-	width: 350px;
-
-	.image {
-		margin-bottom: 25px;
-
-		img {
-			width: 100%;
-			border-radius: 5px;
-			margin-bottom: 5px;
-		}
-
-		i {
-			color: #9b1d20;
-			display: flex;
-			align-items: center;
-			margin-left: 10px;
-
-			span {
-				margin-left: 5px;
-				font-family: "Open Sans", sans-serif;
-				font-size: 14px;
-				font-weight: 400;
-				color: #000000;
-			}
-		}
-	}
 }
 

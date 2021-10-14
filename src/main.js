@@ -16,6 +16,10 @@ Amplify.configure(awsconfig);
 
 const app = createApp(App);
 
+// app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ion-')
+app.config.isCustomElement = tag => tag === 'ion-icon'
+
+
 app.use(Button);
 app.use(Message);
 app.use(router);
