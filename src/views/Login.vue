@@ -5,6 +5,7 @@
       <br />
       <div>
         <form id="signInForm" @submit.prevent="login">
+          <label class="label-customizable">Username</label>
           <input
             id="signInFormUsername"
             name="username"
@@ -15,8 +16,10 @@
             required
             v-model="username"
             :disabled="loading"
+            autofocus="true"
           />
           <p />
+          <label class="label-customizable">Password</label>
           <input
             id="signInFormPassword"
             name="password"
@@ -78,7 +81,7 @@ export default {
         .then((userData) => {
           this.user = userData;
           this.loading = false;
-          console.log ('userdata', userData);
+          console.log("userdata", userData);
           // console.log("challenge_name:", userData.challengeName);
           switch (userData.challengeName) {
             case "NEW_PASSWORD_REQUIRED":
@@ -111,7 +114,7 @@ export default {
           message.warning(err.message).then(() => {
             this.loading = false;
             switch (err.code) {
-              case 'UserNotConfirmedException':
+              case "UserNotConfirmedException":
                 this.$router.push("/confirmsignup/");
                 break;
               default:

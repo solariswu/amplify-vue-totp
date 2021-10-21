@@ -3,8 +3,8 @@
     <div class="modal-body">
       <h2>Forgot Password</h2>
       <br />
-      <span>Please enter your email address below.</span>
       <form id="inputCode" @submit.prevent="inputdone">
+        <label class="label-customizable">Your Email</label>
         <input
           id="inputEmail"
           name="inputText"
@@ -14,6 +14,7 @@
           autocapitalize="none"
           required
           v-model="inputText"
+          autofocus="true"
         />
         <p />
         <a-button
@@ -27,6 +28,10 @@
         >
           Ok
         </a-button>
+        <p />
+        <p class="redirect-customizable">
+          <span>Back to</span>&nbsp;<a href="/login">Sign in</a>
+        </p>
       </form>
     </div>
   </div>

@@ -15,6 +15,7 @@
           required
           v-model="username"
           :disabled="loading"
+          autofocus="true"
         />
         <p />
         <label class="label-customizable">Email</label>
@@ -36,6 +37,7 @@
           name="password"
           type="password"
           class="form-control inputField-customizable"
+          placeholder="Password"
           required
           v-model="password"
           :disabled="loading"
